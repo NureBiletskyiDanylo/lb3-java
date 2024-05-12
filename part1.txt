@@ -1,0 +1,6 @@
+Login;Name;Email
+petrenko;Марія Петренко;petrenko2@mail.com
+ivanenko;Беатрисса-Валері Іваненко;ivanenko@mail.com
+obama;Barack Hussein Obama;obama@gmail.com
+lennon;John Lennon;lennon@live.com
+bush;Джордж Вокер Буш;bush@gmail.com

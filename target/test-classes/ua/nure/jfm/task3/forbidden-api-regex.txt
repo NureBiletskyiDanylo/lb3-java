@@ -1,0 +1,8 @@
+(?x)
+^
+(?:java\.util\.[^.]+)
+|
+(?:java\.util\.stream\.[^.]+)
+|
+(?:java\.lang\.(?:Byte|Short|Integer|Long|Float|Double|Character))
+$

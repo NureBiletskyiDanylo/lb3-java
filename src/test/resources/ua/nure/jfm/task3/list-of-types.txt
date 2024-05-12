@@ -1,0 +1,9 @@
+ua.nure.jfm.task3.Demo
+ua.nure.jfm.task3.Part1
+ua.nure.jfm.task3.Part2
+ua.nure.jfm.task3.Part3
+ua.nure.jfm.task3.Utils
+ua.nure.jfm.task3.converter.CyrillicConverter
+ua.nure.jfm.task3.converter.MayaConverter
+ua.nure.jfm.task3.converter.PositionalConverter
+ua.nure.jfm.task3.converter.RomanConverter
