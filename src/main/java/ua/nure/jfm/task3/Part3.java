@@ -51,7 +51,10 @@ public class Part3 {
 				}
 			}
 			sb.append(currentWord);
-			sb.append(" ");
+            if(sb.charAt(sb.length() - 1) != '\n')
+            {
+                sb.append(" ");
+            }
         }
 		sb.deleteCharAt(sb.length() - 1);
 		return sb.toString();
@@ -106,7 +109,7 @@ public class Part3 {
 			}
 			else if (letter == 'І') {
 				result.append('і');
-			} else {
+			} else if (letter != '\n'){
 				result.append(letter);
 			}
 		}

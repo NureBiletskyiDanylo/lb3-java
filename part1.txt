@@ -1,6 +1,6 @@
 Login;Name;Email
-petrenko;РњР°СЂС–СЏ РџРµС‚СЂРµРЅРєРѕ;petrenko2@mail.com
-ivanenko;Р‘РµР°С‚СЂРёСЃСЃР°-Р’Р°Р»РµСЂС– Р†РІР°РЅРµРЅРєРѕ;ivanenko@mail.com
+petrenko;Марія Петренко;petrenko2@mail.com
+ivanenko;Беатрисса-Валерi Іваненко;ivanenko@mail.com
 obama;Barack Hussein Obama;obama@gmail.com
 lennon;John Lennon;lennon@live.com
-bush;Р”Р¶РѕСЂРґР¶ Р’РѕРєРµСЂ Р‘СѓС€;bush@gmail.com
+bush;Джордж Вокер Буш;bush@gmail.com
