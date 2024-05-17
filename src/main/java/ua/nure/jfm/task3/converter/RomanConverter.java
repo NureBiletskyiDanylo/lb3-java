@@ -16,7 +16,37 @@ public class RomanConverter {
 	private static final int[] values = { 1, 5, 10, 50, 100, 500, 1000 };
 
 	public static String convert(String str) {
-		throw new UnsupportedOperationException();
+		int num = 0;
+		for (int i = 0; i < str.length(); i++) {
+			if (str.charAt(i) < '0' || str.charAt(i) > '9') {
+				continue;
+			}
+			num = num * 10 + (str.charAt(i) - '0');
+		}
+
+		if (num < 1 || num > 3999) {
+			throw new IllegalArgumentException("Roman conversion works up until 3999");
+		}
+
+		StringBuilder sb = new StringBuilder();
+
+		// Convert number to Roman numeral
+		int i = values.length - 1;
+		while (num > 0) {
+			while (num >= values[i]) {
+				sb.append(digits[i]);
+				num -= values[i];
+			}
+			if (i > 0) {
+				int subtractiveValue = values[i] - values[i % 2 == 0 ? i - 2 : i - 1];
+				if (num >= subtractiveValue) {
+					sb.append(digits[i % 2 == 0 ? i - 2 : i - 1]).append(digits[i]);
+					num -= subtractiveValue;
+				}
+			}
+			i--;
+		}
+		return sb.toString();
 	}
 
 	public static void main(String[] args) {
@@ -34,5 +64,18 @@ public class RomanConverter {
 		System.out.println(s);
 		System.out.println(RomanConverter.convert(s));
 	}
+
+    private static int stringNumberCount(String str){
+        int count = 0;
+        for(int i = 0; i < str.length(); i++)
+        {
+            if(str.charAt(i) < '0' || str.charAt(i) > '9')
+            {
+                continue;
+            }
+            count++;
+        }
+        return count;
+    }
 
 }
