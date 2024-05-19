@@ -21,13 +21,7 @@ public class Part3 {
     private static int currentAmountOfDifferentWords = 0;
 
     public static void main(String[] args) {
-        String lines = null;
-        lines = "Лягає день. Він віддає свої надії ночі. \n" +
-                "Робітники Заморились працювати. \n" +
-                "Там вогні, Яскраві блищуть лампи.\n" +
-                "Там вогні, Яскраві блищуть лампи.\n" +
-                "Робітники Заморились працювати. \n" +
-                "Робітники Заморились працювати."; //getContent(PATH);
+        String lines = getContent(PATH);
         System.out.println(convert(lines));
     }
 

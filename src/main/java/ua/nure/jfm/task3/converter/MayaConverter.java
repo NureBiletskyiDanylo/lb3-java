@@ -15,23 +15,17 @@ public class MayaConverter {
 
     public static String convert(String from) {
         long number = parseIntC(from);
-        double digit = (double) number;
-        int maxPower = getPower(number);
-        StringBuilder mayaCode = new StringBuilder();
-        double division = digit / Math.pow(20, maxPower);
-        while (maxPower >= 0) {
-            double nextDivision = division - Math.floor(division);
-
-            int mayacode = (int) Math.floor(division);
-            mayaCode.append("\uD834" + (char) (0xDEE0 + mayacode));
-
-            division = nextDivision * 20;
-            if (division - (int) Math.floor(division) > 0.99) {
-                division = Math.ceil(division);
-            }
-            maxPower--;
+        StringBuilder sb = new StringBuilder();
+        if (number == 0) {
+            return ar[0];
         }
-        return mayaCode.toString();
+
+        while (number > 0) {
+            int remainder = (int) number % 20;
+            sb.insert(0, ar[remainder]);
+            number /= 20;
+        }
+        return sb.toString();
     }
 
     public static void main(String[] args) {
@@ -42,19 +36,10 @@ public class MayaConverter {
         }
         System.out.println("~~~");
         System.out.println(2147483647);
-        System.out.println(MayaConverter.convert("399"));
+        System.out.println(MayaConverter.convert("2147483647"));
         System.out.println("~~~");
         System.out.println("100_000");
         System.out.println(MayaConverter.convert(String.valueOf("100_000")));
-    }
-
-    private static int getPower(long number) {
-        for (int i = 0; i <= 9; i++) {
-            if ((long) Math.pow(20, i) > number) {
-                return i - 1;
-            }
-        }
-        return -1;
     }
 
     private static int countDigits(String string) {

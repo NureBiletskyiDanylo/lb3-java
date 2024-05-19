@@ -9,29 +9,15 @@ import java.nio.file.Paths;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static ua.nure.jfm.task3.Utils.getContent;
+
 public class Part2 {
 
     private static final String PATH = "part2.txt";
 
     public static void main(String[] args) {
-        FileReader reader;
-        try {
-            reader = new FileReader(PATH);
-        } catch (FileNotFoundException exc) {
-            System.out.println("File wasn't found");
-            return;
-        }
-        BufferedReader bufferedReader = new BufferedReader(reader);
-        String lines = null;
-        try {
-            lines = new String(Files.readAllBytes(Paths.get(PATH)));
-        } catch (IOException exc) {
-            System.out.println("Can't open a file");
-            return;
-        }
-        for (int j = 0; j < 10; j++) {
-            System.out.println(convert(lines, j));
-        }
+        String lines = getContent(PATH);
+        System.out.println(convert(lines, 5));
     }
 
     public static String convert(String input, int k) {

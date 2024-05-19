@@ -42,7 +42,7 @@ public class CyrillicConverter {
         System.out.println(kMul);
         String s = "999_999";
         System.out.printf("Maximum value (%s):%n", s);
-        System.out.println(CyrillicConverter.convert("20"));
+        System.out.println(CyrillicConverter.convert(s));
     }
 
     private static int countDigits(String string) {
