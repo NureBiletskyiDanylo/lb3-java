@@ -1,11 +1,4 @@
 package ua.nure.jfm.task3;
-
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,41 +10,45 @@ public class Part2 {
 
     public static void main(String[] args) {
         String lines = getContent(PATH);
-        System.out.println(convert(lines, 5));
+        System.out.println(convert(lines, 2));
     }
 
     public static String convert(String input, int k) {
         StringBuilder sb = new StringBuilder();
-        String reges = "(?<=[\\s\\n~])([\\p{L},.?!]{"+ k + "})(?=[\\s]|$)";
+        String begining = k + ": ";
+        sb.append(begining);
+        String reges = "(\\p{L}+(?:['.,~-]\\p{L}+)*[.,!?-]?)";
         Pattern pattern = Pattern.compile(reges);
         Matcher matcher = pattern.matcher(input);
-        StringBuilder forExisting = new StringBuilder();
+        int arrLen = countMatches(matcher);
+        String[] arr = new String[arrLen];
+        int index = 0;
         while (matcher.find()) {
-            if (sb.length() == 0 && forExisting.length() == 0) {
-                sb.append(k + ": ");
-                sb.append(matcher.group(1));
-                String clearedString = getStringWithoutSpecificSymbols(matcher.group(1));
-                forExisting.append(clearedString);
-                sb.append(" ");
-                continue;
+            arr[index++] = matcher.group(1);
+        }
+        arr = sortStringArr(arr);
+        int currentRating = 0;
+        int maxLen = 0;
+        int i = 0;
+        while (currentRating <= k && i < arr.length) {
+            String word = arr[i];
+            if (arr[i].length() > maxLen) {
+                maxLen = arr[i].length();
+                currentRating++;
             }
-            String matchedString = getStringWithoutSpecificSymbols(matcher.group(1));
-            if (forExisting.indexOf(matchedString) != -1) {
-                continue;
+
+            if (currentRating == k) {
+                String toAppend = arr[i] + " ";
+                sb.append(toAppend);
             }
-            sb.append(matcher.group(1));
-            sb.append(" ");
+            i++;
+        }
+        if (currentRating < k) {
+            return "";
         }
         sb.deleteCharAt(sb.length() - 1);
         String result = sb.toString();
         return result;
-    }
-
-    private static String getStringWithoutSpecificSymbols(String string) {
-        char[] array = string.toCharArray();
-        deleteSpecificChars(array);
-        String normalizedString = new String(array);
-        return normalizedString;
     }
 
     private static void deleteSpecificChars(char[] array) {
@@ -73,5 +70,56 @@ public class Part2 {
         }
 
         array = newChar;
+    }
+
+    private static int countMatches(Matcher matcher) {
+        int count = 0;
+        while (matcher.find()) {
+            count++;
+        }
+
+        matcher.reset();
+        return count;
+    }
+
+    private static String[] sortStringArr(String[] arr) {
+        int newLen = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] != null && !contains(i, arr[i], arr)) {
+                newLen++;
+            }
+        }
+        String[] newArr = new String[newLen];
+        int j = 0;
+        // get rid of duplicates
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] != null && !contains(j, arr[i], newArr)) {
+                newArr[j++] = arr[i];
+            }
+        }
+
+        for (int i = 1; i < newArr.length; i++) {
+            int k = i - 1;
+            String keyValue = newArr[i];
+            while (k >= 0 && keyValue.length() < newArr[k].length()) {
+                newArr[k + 1] = newArr[k];
+                k--;
+            }
+            newArr[k + 1] = keyValue;
+        }
+
+        return newArr;
+    }
+
+    private static boolean contains(int startIndex, String word, String[] arr) {
+        if (startIndex == 0) {
+            return false;
+        }
+        for (int i = startIndex - 1; i >= 0; i--) {
+            if (arr[i].equals(word)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

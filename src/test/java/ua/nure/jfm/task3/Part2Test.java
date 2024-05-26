@@ -13,7 +13,7 @@ class Part2Test extends Base {
 	@ParameterizedTest
 	@CsvFileSource(delimiter = '|', encoding = "Cp1251", resources = "part2.csv")
 	void testConvert(String inputString, String kString, String expectedString) {
-		String expected = expectedString.replace("~", "\n");
+		String expected = expectedString != null ? expectedString.replace("~", "\n") : "";
 		int k = Integer.parseInt(kString);
 		String input = inputString.replace("~", "\n");
 		String actual = Part2.convert(input, k).replaceAll("\r", "");

@@ -1,3 +1,7 @@
+a b a abc bca abc abcde abcdf|1|1: a b
+a b a abc bca abc abcde abcdf|2|2: abc bca
+a b a abc bca abc abcde abcdf|3|3: abcde abcdf
+a b a abc bca abc abcde abcdf|4|
 When I was younger, so much younger than today~I never needed anybody's help in any way|1|1: I
 When I was younger, so much younger than today~I never needed anybody's help in any way|2|2: so in
 When I was younger, so much younger than today~I never needed anybody's help in any way~Лягає день. Він віддає свої надії ночі. Робітники Заморились працювати. Там вогні, Яскраві блищуть лампи.|5|5: today never Лягає день. надії ночі.
